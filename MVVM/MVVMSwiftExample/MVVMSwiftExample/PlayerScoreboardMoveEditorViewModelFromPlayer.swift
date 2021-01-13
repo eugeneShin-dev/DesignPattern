@@ -17,15 +17,11 @@ class PlayerScoreboardMoveEditorViewModelFromPlayer: NSObject, PlayerScoreboardM
     
     var playerName: String
     
-    var onePointMoveCount: String
-    
-    var twoPointMoveCount: String
-    
-    var assistMoveCount: String
-    
-    var reboundMoveCount: String
-    
-    var foulMoveCount: String
+    let onePointMoveCount: Dynamic<String>
+    let twoPointMoveCount: Dynamic<String>
+    let assistMoveCount: Dynamic<String>
+    let reboundMoveCount: Dynamic<String>
+    let foulMoveCount: Dynamic<String>
     
     func onePointMove() {
         makeMove(.onePoint)
@@ -53,20 +49,20 @@ class PlayerScoreboardMoveEditorViewModelFromPlayer: NSObject, PlayerScoreboardM
         self.player = player
         
         self.playerName = player.name
-        self.onePointMoveCount = "\(game.playerMoveCount(for: player, move: .onePoint))"
-        self.twoPointMoveCount = "\(game.playerMoveCount(for: player, move: .twoPoints))"
-        self.assistMoveCount = "\(game.playerMoveCount(for: player, move: .onePoint))"
-        self.reboundMoveCount = "\(game.playerMoveCount(for: player, move: .onePoint))"
-        self.foulMoveCount = "\(game.playerMoveCount(for: player, move: .onePoint))"
+        self.onePointMoveCount = Dynamic("\(game.playerMoveCount(for: player, move: .onePoint))")
+        self.twoPointMoveCount = Dynamic("\(game.playerMoveCount(for: player, move: .twoPoints))")
+        self.assistMoveCount = Dynamic("\(game.playerMoveCount(for: player, move: .onePoint))")
+        self.reboundMoveCount = Dynamic("\(game.playerMoveCount(for: player, move: .onePoint))")
+        self.foulMoveCount = Dynamic("\(game.playerMoveCount(for: player, move: .onePoint))")
     }
     
     fileprivate func makeMove(_ move: PlayerInGameMove) {
         game.addPlayerMove(move, for: player)
         
-        onePointMoveCount = "\(game.playerMoveCount(for: player, move: .onePoint))"
-        twoPointMoveCount = "\(game.playerMoveCount(for: player, move: .twoPoints))"
-        assistMoveCount = "\(game.playerMoveCount(for: player, move: .onePoint))"
-        reboundMoveCount = "\(game.playerMoveCount(for: player, move: .onePoint))"
-        foulMoveCount = "\(game.playerMoveCount(for: player, move: .onePoint))"
+        onePointMoveCount.value = "\(game.playerMoveCount(for: player, move: .onePoint))"
+        twoPointMoveCount.value = "\(game.playerMoveCount(for: player, move: .twoPoints))"
+        assistMoveCount.value = "\(game.playerMoveCount(for: player, move: .onePoint))"
+        reboundMoveCount.value = "\(game.playerMoveCount(for: player, move: .onePoint))"
+        foulMoveCount.value = "\(game.playerMoveCount(for: player, move: .onePoint))"
     }
 }
