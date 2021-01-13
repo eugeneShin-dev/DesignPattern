@@ -42,7 +42,7 @@ class GameScoreboardEditorViewController: UIViewController {
     // MARK: Button Action
     
     @IBAction func pauseButtonPress(_ sender: AnyObject) {
-
+        viewModel?.togglePause()
     }
     
     // MARK: Private
@@ -56,7 +56,22 @@ class GameScoreboardEditorViewController: UIViewController {
     }
     
     fileprivate func fillUI() {
-
+        if !isViewLoaded {
+            return
+        }
+        
+        guard let viewModel = viewModel else {
+            return
+        }
+        
+        self.homeTeamNameLabel.text = viewModel.homeTeam
+        self.awayTeamNameLabel.text = viewModel.awayTeam
+        
+        self.scoreLabel.text = viewModel.score
+        self.timeLabel.text = viewModel.time
+        
+        let title: String = viewModel.isPaused ? "Start" : "Pause"
+        self.pauseButton.setTitle(title, for: . normal)
     }
 
 }
