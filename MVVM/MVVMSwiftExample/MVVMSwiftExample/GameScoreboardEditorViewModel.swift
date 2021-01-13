@@ -11,6 +11,9 @@ import Foundation
 protocol GameScoreboardEditorViewModel {
     var homeTeam: String { get }
     var awayTeam: String { get }
+    var homePlayers: [PlayerScoreboardMoveEditorViewModel] { get }
+    var awayPlayers: [PlayerScoreboardMoveEditorViewModel] { get }
+    
     var time: String { get }
     var score: String { get }
     var isFinished: Bool { get }

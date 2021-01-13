@@ -37,6 +37,9 @@ class GameScoreboardEditorViewModelFromGame: NSObject, GameScoreboardEditorViewM
         self.isPaused = !isPaused
     }
     
+    let homePlayers: [PlayerScoreboardMoveEditorViewModel]
+    let awayPlayers: [PlayerScoreboardMoveEditorViewModel]
+    
     // MARK: init
     
     init(withGame game: Game) {
@@ -44,6 +47,8 @@ class GameScoreboardEditorViewModelFromGame: NSObject, GameScoreboardEditorViewM
         
         self.homeTeam = game.homeTeam.name
         self.awayTeam = game.awayTeam.name
+        self.homePlayers = GameScoreboardEditorViewModelFromGame.playerViewModels(from: game.homeTeam.players, game: game)
+        self.awayPlayers = GameScoreboardEditorViewModelFromGame.playerViewModels(from: game.awayTeam.players, game: game)
         
         self.time = GameScoreboardEditorViewModelFromGame.timeRemainingPretty(for: game)
         self.score = GameScoreboardEditorViewModelFromGame.scorePretty(for: game)
@@ -60,6 +65,14 @@ class GameScoreboardEditorViewModelFromGame: NSObject, GameScoreboardEditorViewM
             self.game.time += interval
             self.time = GameScoreboardEditorViewModelFromGame.timeRemainingPretty(for: self.game)
         }
+    }
+    
+    fileprivate static func playerViewModels(from players: [Player], game: Game) -> [PlayerScoreboardMoveEditorViewModel] {
+        var playerViewModels: [PlayerScoreboardMoveEditorViewModel] = [PlayerScoreboardMoveEditorViewModel]()
+        for player in players {
+            playerViewModels.append(PlayerScoreboardMoveEditorViewModelFromPlayer(withGame: game, player: player))
+        }
+        return playerViewModels
     }
     
     fileprivate func pauseTimer() {
