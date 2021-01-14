@@ -22,19 +22,19 @@ class GameScoreboardEditorViewModelFromGame: NSObject, GameScoreboardEditorViewM
     var homeTeam: String
     var awayTeam: String
     
-    var time: String
-    var score: String
-    var isFinished: Bool
+    var time: Dynamic<String>
+    var score: Dynamic<String>
+    var isFinished: Dynamic<Bool>
     
-    var isPaused: Bool
+    var isPaused: Dynamic<Bool>
     func togglePause() {
-        if isPaused {
+        if isPaused.value {
             startTimer()
         } else {
             pauseTimer()
         }
         
-        self.isPaused = !isPaused
+        self.isPaused.value = !isPaused.value
     }
     
     let homePlayers: [PlayerScoreboardMoveEditorViewModel]
@@ -50,10 +50,34 @@ class GameScoreboardEditorViewModelFromGame: NSObject, GameScoreboardEditorViewM
         self.homePlayers = GameScoreboardEditorViewModelFromGame.playerViewModels(from: game.homeTeam.players, game: game)
         self.awayPlayers = GameScoreboardEditorViewModelFromGame.playerViewModels(from: game.awayTeam.players, game: game)
         
-        self.time = GameScoreboardEditorViewModelFromGame.timeRemainingPretty(for: game)
-        self.score = GameScoreboardEditorViewModelFromGame.scorePretty(for: game)
-        self.isFinished = game.isFinished
-        self.isPaused = true
+        self.time = Dynamic(GameScoreboardEditorViewModelFromGame.timeRemainingPretty(for: game))
+        self.score = Dynamic(GameScoreboardEditorViewModelFromGame.scorePretty(for: game))
+        self.isFinished = Dynamic(game.isFinished)
+        self.isPaused = Dynamic(true)
+        
+        super.init()
+        subscribeToNotifications()
+    }
+    
+    deinit {
+        unsubscribeFromNotifications()
+    }
+    
+    // MARK: Notifications (Private)
+    fileprivate func subscribeToNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(gameScoreDidChangeNotification(_:)), name: NSNotification.Name(rawValue: GameNotifications.GameScoreDidChangeNotification), object: game)
+    }
+    
+    fileprivate func unsubscribeFromNotifications() {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    @objc fileprivate func gameScoreDidChangeNotification(_ notification: NSNotification) {
+        self.score.value = GameScoreboardEditorViewModelFromGame.scorePretty(for: game)
+        
+        if game.isFinished {
+            self.isFinished.value = true
+        }
     }
     
     // MARK: Private
@@ -63,7 +87,7 @@ class GameScoreboardEditorViewModelFromGame: NSObject, GameScoreboardEditorViewM
         let interval: TimeInterval = 0.001
         gameTimer = Timer.schedule(repeatInterval: interval) { timer in
             self.game.time += interval
-            self.time = GameScoreboardEditorViewModelFromGame.timeRemainingPretty(for: self.game)
+            self.time = Dynamic(GameScoreboardEditorViewModelFromGame.timeRemainingPretty(for: self.game))
         }
     }
     
