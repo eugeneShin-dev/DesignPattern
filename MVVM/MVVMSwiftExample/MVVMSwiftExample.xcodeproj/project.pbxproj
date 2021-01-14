@@ -27,6 +27,11 @@
 		11BCCCEA1D97CABA008DB25F /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BCCCE11D97CABA008DB25F /* Team.swift */; };
 		11BCCCEB1D97CABA008DB25F /* UIStoryboard+Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BCCCE21D97CABA008DB25F /* UIStoryboard+Loader.swift */; };
 		11E21EAF1DA4106400380E3C /* NSTimer+Closure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E21EAE1DA4106400380E3C /* NSTimer+Closure.swift */; };
+		D29C6AB525AEDA85002803F2 /* GameScoreboardEditorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29C6AB425AEDA85002803F2 /* GameScoreboardEditorViewModel.swift */; };
+		D29C6AB725AEDA9A002803F2 /* GameScoreboardEditorViewModelFromGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29C6AB625AEDA9A002803F2 /* GameScoreboardEditorViewModelFromGame.swift */; };
+		D2E4030C25AEE087003A63B7 /* PlayerScoreboardMoveEditorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E4030B25AEE087003A63B7 /* PlayerScoreboardMoveEditorViewModel.swift */; };
+		D2E4031125AEE18D003A63B7 /* PlayerScoreboardMoveEditorViewModelFromPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E4031025AEE18D003A63B7 /* PlayerScoreboardMoveEditorViewModelFromPlayer.swift */; };
+		D2E4031625AEF95A003A63B7 /* Dynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E4031525AEF95A003A63B7 /* Dynamic.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +78,11 @@
 		11BCCCE11D97CABA008DB25F /* Team.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		11BCCCE21D97CABA008DB25F /* UIStoryboard+Loader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+Loader.swift"; sourceTree = "<group>"; };
 		11E21EAE1DA4106400380E3C /* NSTimer+Closure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTimer+Closure.swift"; sourceTree = "<group>"; };
+		D29C6AB425AEDA85002803F2 /* GameScoreboardEditorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScoreboardEditorViewModel.swift; sourceTree = "<group>"; };
+		D29C6AB625AEDA9A002803F2 /* GameScoreboardEditorViewModelFromGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScoreboardEditorViewModelFromGame.swift; sourceTree = "<group>"; };
+		D2E4030B25AEE087003A63B7 /* PlayerScoreboardMoveEditorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerScoreboardMoveEditorViewModel.swift; sourceTree = "<group>"; };
+		D2E4031025AEE18D003A63B7 /* PlayerScoreboardMoveEditorViewModelFromPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerScoreboardMoveEditorViewModelFromPlayer.swift; sourceTree = "<group>"; };
+		D2E4031525AEF95A003A63B7 /* Dynamic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dynamic.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -208,6 +218,11 @@
 		11F768761D99050600F159D2 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				D29C6AB425AEDA85002803F2 /* GameScoreboardEditorViewModel.swift */,
+				D29C6AB625AEDA9A002803F2 /* GameScoreboardEditorViewModelFromGame.swift */,
+				D2E4030B25AEE087003A63B7 /* PlayerScoreboardMoveEditorViewModel.swift */,
+				D2E4031025AEE18D003A63B7 /* PlayerScoreboardMoveEditorViewModelFromPlayer.swift */,
+				D2E4031525AEF95A003A63B7 /* Dynamic.swift */,
 			);
 			name = ViewModel;
 			sourceTree = "<group>";
@@ -352,15 +367,20 @@
 				118C387E1D9B0A180006396D /* UIColor+Theme.swift in Sources */,
 				118C38741D99B7760006396D /* PlayerScoreboardMoveEditorView.swift in Sources */,
 				11BCCCEB1D97CABA008DB25F /* UIStoryboard+Loader.swift in Sources */,
+				D29C6AB725AEDA9A002803F2 /* GameScoreboardEditorViewModelFromGame.swift in Sources */,
 				11BCCCAF1D97CA2C008DB25F /* HomeViewController.swift in Sources */,
 				118C38781D99B9F10006396D /* UINib+Loader.swift in Sources */,
+				D2E4030C25AEE087003A63B7 /* PlayerScoreboardMoveEditorViewModel.swift in Sources */,
 				11BCCCE81D97CABA008DB25F /* Player.swift in Sources */,
 				11E21EAF1DA4106400380E3C /* NSTimer+Closure.swift in Sources */,
+				D2E4031625AEF95A003A63B7 /* Dynamic.swift in Sources */,
 				11BCCCAD1D97CA2C008DB25F /* AppDelegate.swift in Sources */,
+				D2E4031125AEE18D003A63B7 /* PlayerScoreboardMoveEditorViewModelFromPlayer.swift in Sources */,
 				11BCCCEA1D97CABA008DB25F /* Team.swift in Sources */,
 				11BCCCE41D97CABA008DB25F /* Game.swift in Sources */,
 				118C387A1D99C1E70006396D /* UIViewController+Subview.swift in Sources */,
 				11615D0D1D97F5C600A007D2 /* GameScoreboardEditorViewController.swift in Sources */,
+				D29C6AB525AEDA85002803F2 /* GameScoreboardEditorViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

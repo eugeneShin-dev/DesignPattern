@@ -25,6 +25,12 @@ class PlayerScoreboardMoveEditorView: UIView {
     
     fileprivate weak var playerNibView: UIView!
     
+    var viewModel: PlayerScoreboardMoveEditorViewModel? {
+        didSet {
+            fillUI()
+        }
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
@@ -43,23 +49,23 @@ class PlayerScoreboardMoveEditorView: UIView {
     // MARK: Button Action
     
     @IBAction func onePointAction(_ sender: Any) {
-
+        viewModel?.onePointMove()
     }
     
     @IBAction func twoPointsAction(_ sender: Any) {
-    
+        viewModel?.twoPointMove()
     }
     
     @IBAction func assistAction(_ sender: Any) {
-        
+        viewModel?.assistMove()
     }
     
     @IBAction func reboundAction(_ sender: Any) {
-    
+        viewModel?.reboundMove()
     }
     
     @IBAction func foulAction(_ sender: Any) {
-    
+        viewModel?.foulMove()
     }
     
     // MARK: Private
@@ -88,7 +94,22 @@ class PlayerScoreboardMoveEditorView: UIView {
     }
     
     fileprivate func fillUI() {
-
+        guard let viewModel = viewModel else {
+            return
+        }
+        
+        self.name.text = viewModel.playerName
+        
+        viewModel.onePointMoveCount.bindAndFire { [unowned self] in
+            self.onePointCountLabel.text = $0
+        }
+        
+        viewModel.twoPointMoveCount.bindAndFire { [unowned self] in
+            self.twoPointCountLabel.text = $0
+        }
+        viewModel.assistMoveCount.bindAndFire { [unowned self] in self.assistCountLabel.text = $0 }
+        viewModel.reboundMoveCount.bindAndFire { [unowned self] in self.reboundCountLabel.text = $0 }
+        viewModel.foulMoveCount.bindAndFire { [unowned self] in self.foulCountLabel.text = $0 }
     }
     
 }
